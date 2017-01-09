@@ -1,0 +1,15 @@
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-me	nu-content>
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-buttons side="right">
+  			<button class="button button-clear" ng-click="logOut()"><i class="icon ion-log-out"></i></button> 
+      </ion-nav-buttons>
+      <ion-nav-buttons side="left">
+  			<button class="button button-clear" ng-click="logOut()">{{username}}</button> 
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-nav-view name="menuContent">{{username}}</ion-nav-view>
+  </ion-side-menu-content>
+
+</ion-side-menus>

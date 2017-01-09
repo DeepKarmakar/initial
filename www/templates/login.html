@@ -1,0 +1,31 @@
+<ion-view view-title="login" hide-nav-bar="true">
+  <ion-content>
+    <div class="page_content">
+      <div class="logo_holder">
+        <img src="img/logo.jpg" alt="CheckList">
+      </div>
+
+
+      <div class="form_holder" flex="80" flex-offset="10">
+        <form role="form" name="loginForm" novalidate="">
+          <md-input-container md-no-float ng-class="{'has-error': loginForm.email.$invalid && loginForm.email.$touched}">
+            <input type="email" ng-model="user.email" name="email" placeholder="Enter email" required="">
+            <small class="help-block" ng-show="loginForm.email.$invalid && loginForm.email.$touched">Plaese enter email address</small>
+          </md-input-container>
+          <md-input-container md-no-float ng-class="{'has-error' : loginForm.password.$invalid && loginForm.password.$touched}">
+            <input type="password" name="password" ng-model="user.password" placeholder="Password" required="">
+            <small class="help-block" ng-show="loginForm.password.$invalid && loginForm.password.$touched">Please enter pass</small>
+          </md-input-container>
+          <md-button class="md-accent md-raised" ng-disabled="loginForm.$invalid" ng-click="signIn()">LOGIN</md-button>
+          <a ui-sref="app.register">Sign Up</a>
+          <p ng-show="errorMsg">{{errorMessage}}</p>  
+        </form>      
+      </div>
+
+  
+<!--       <div class="btm_img">
+        <img src="img/back.png" alt="">
+      </div> -->
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,98 @@
+<ion-view view-title="Dasboard">
+	<ion-content>	
+		 <md-tabs md-dynamic-height md-border-bottom class="md-accent">
+      <md-tab label="Work List">
+        <md-content>
+          <md-list flex>
+ 
+            <md-list-item class="" layout-padding ng-repeat="article in articles" data-toggle="modal" data-target="#editModal" ng-click="editPost(article.$id)">
+              <div class="md-list-item-text" layout="column">
+                <a href=""></a><h4>{{article.title}}</h4>
+              </div>
+              <div class="md-secondary">
+    	          	<md-button class="md-primary btn-danger" ng-click="deleteConfirm(article)" data-target="#deleteModal" data-toggle="modal">Delete</md-button>
+              </div>
+            </md-list-item>
+          <md-divider></md-divider> 
+
+
+        </md-content>
+      </md-tab>
+      <md-tab label="New List">
+        <md-content class="md-padding">
+          <h4>Add New Task</h4>
+
+          <form role="form" name="postForm" novalidate="" ng-submit="createPost()">
+            <div class="form-group" ng-class="{'has-error': postForm.titleTxt.$invalid && postForm.titleTxt.$touched}">
+              <label for="exampleInputtitleTxt1">Title</label>
+              <input type="titleTxt" class="form-control" ng-model="article.titleTxt" name="titleTxt" placeholder="Enter title" required="">
+              <small class="help-block" ng-show="postForm.titleTxt.$invalid && postForm.titleTxt.$touched">Plaese enter title</small>
+            </div>
+            <div class="form-group" ng-class="{'has-error' : postForm.postTxt.$invalid && postForm.postTxt.$touched}" >
+              <label for="exampleInputpostTxt1">Message</label>
+              <textarea class="form-control" name="postTxt" ng-model="article.postTxt" placeholder="postTxt" required=""></textarea> 
+              <small class="help-block" ng-show="postForm.postTxt.$invalid && postForm.postTxt.$touched">Please enter message</small>
+            </div> 
+            <button type="submit" class="btn btn-primary" ng-disabled="postForm.$invalid" ng-click="post()">Submit</button>
+           <!--  <p ng-show="errorMsg">{{errorMessage}}</p> -->
+          </form> 
+
+        </md-content>
+      </md-tab>
+    </md-tabs>
+
+
+<!-- edit Modal -->
+<div id="editModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Post</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" name="postForm" novalidate="" ng-submit="createPost()">
+          <div class="form-group" ng-class="{'has-error': postForm.titleTxt.$invalid && postForm.titleTxt.$touched}">
+            <label for="exampleInputtitleTxt1">Title</label>
+            <input type="titleTxt" class="form-control" ng-model="editPostData.title" name="titleTxt" placeholder="Enter title" required="">
+            <small class="help-block" ng-show="postForm.titleTxt.$invalid && postForm.titleTxt.$touched">Plaese enter title</small>
+          </div>
+          <div class="form-group" ng-class="{'has-error' : postForm.postTxt.$invalid && postForm.postTxt.$touched}" >
+            <label for="exampleInputpostTxt1">Message</label>
+            <textarea class="form-control" name="postTxt" ng-model="editPostData.post" placeholder="postTxt" required=""></textarea> 
+            <small class="help-block" ng-show="postForm.postTxt.$invalid && postForm.postTxt.$touched">Please enter message</small>
+          </div>  
+        </form> 
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-sm btn-primary" type="submit" ng-click="updatePost(editPostData.$id)">Update</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div id="deleteModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content"> 
+      <div class="modal-body"> 
+        <h3>Are You Sure? </h3>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-sm btn-danger" type="submit" ng-click="deletePost(deleteArtivle)">Delete</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> 
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    
+	</ion-content>
+</ion-view>

@@ -1,0 +1,41 @@
+body{
+	min-height: 100vh;
+	position: relative;
+}
+.page_content{
+	text-align: center;
+}
+.logo_holder{
+	text-align: center;
+	margin-top: 18vh;
+}
+.form_holder md-input-container{
+	width: 100%;
+}
+.form_holder md-input-container input{
+	background-color: #fff !important;
+    border: 0 none !important;
+    border-radius: 20px !important;
+    box-shadow: 1px 0 12px -2px #d0d1d2;
+    height: 45px !important;
+    text-align: center;
+    font-size: 18px;
+}
+.form_holder .md-button{
+	width: 100%;
+	border-radius: 30px;
+	padding: 8px;
+	margin-left: 0px;
+}
+.btm_img{
+	position: absolute;
+	top: 120%;
+	left: 0;
+	height: auto;
+}
+.btm_img img{
+	max-width: 100%;
+}
+md-content{
+	background-color: #fff !important;
+}
