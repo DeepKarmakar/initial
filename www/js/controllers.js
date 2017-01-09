@@ -31,7 +31,7 @@ app.controller('AppCtrl', ['$scope', '$ionicSideMenuDelegate', '$firebaseAuth', 
 
 
 // Dashborad
-app.controller('dashboardCtrl', ['$scope', '$firebaseArray', '$location', 'commoProp', '$mdDialog', function($scope, $firebaseArray, $states, commoProp, $mdDialog){
+app.controller('dashboardCtrl', ['$scope', '$firebaseArray', '$location', 'commoProp', '$mdDialog', '$ionicPopup', function($scope, $firebaseArray, $states, commoProp, $mdDialog, $ionicPopup){
 	$scope.status = '  ';
   	$scope.customFullscreen = false;
 	$scope.username = commoProp.getUser();
@@ -86,29 +86,26 @@ app.controller('dashboardCtrl', ['$scope', '$firebaseArray', '$location', 'commo
 		$('#deleteModal').modal('hide');
 	};
 
+ 
 $scope.deleteConfirm = function(article) {
     // Appending dialog to document.body to cover sidenav in docs app
-    var confirm = $mdDialog.confirm()
-          .title('Would you like to delete your note?')
-          .textContent('All content will gone')
-          .ariaLabel('Lucky day')  
-          // .targetEvent(article)
-          .ok('Delete')
-          .cancel('Cancel');
-
-    $scope.deleteArtivle = article; 
-
-    $mdDialog.show(confirm).then(function(deleteArtivle) {
-      $scope.status = 'Deleted';
-      $scope.articles.$remove(deleteArtivle);
-      console.log('deleted'); 
-      console.log($scope.articles);
-    }, function() {
-      $scope.status = 'Canceled';
-      console.log('Canceled');
+    var confirmPopup = $ionicPopup.confirm({
+    	title: 'Delete Note',
+    	template: 'Would you like to delete your note?', 
+	    buttons: [
+	      { text: 'Cancel' , type: 'button-stable' },
+	      { text: 'Delete', type: 'button-assertive' , onTap: function(){return article;} }
+	    ]
     });
+    $scope.deleteArtivle = article; 
+	confirmPopup.then(function(deleteArtivle) {
+		if(deleteArtivle) {
+		  $scope.articles.$remove(deleteArtivle);
+		  console.log('deleted'); 
+		  console.log($scope.articles); 
+		}
+	}); 
   };
-
 
 }]); 
 
