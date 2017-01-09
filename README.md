@@ -1,2 +1,0 @@
-# initial
-Starting app
