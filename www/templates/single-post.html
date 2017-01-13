@@ -1,0 +1,18 @@
+<ion-view view-title="{{chat.name}}">
+  <ion-content class="padding"> 
+	  <input type="text" value="{{article.title}}" ng-disabled="!disableInp" ng-model="article.title">
+	  <textarea name="" id="" cols="30" rows="10" value="{{article.post}}" ng-model="article.post" ng-disabled="!disableInp"></textarea> 
+		<button class="button button-stable" ng-click="editPost()" ng-hide="disableInp">
+		  button-edit
+		</button>
+		<button class="button button-positive" ng-hide="!disableInp" ng-click="updatePost()">
+		  button-Update
+		</button>
+		<button class="button button-assertive">
+		  button-assertive
+		</button>
+		{{updateMsg}}
+		<p ng-show="updateMsg">updating...</p>
+		<p>{{updatedMsg}}</p>
+  </ion-content>
+</ion-view>
